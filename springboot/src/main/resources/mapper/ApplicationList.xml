@@ -1,0 +1,20 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjq.springboot.mapper.ApplicationListMapper">
+
+    <select id="findUnSelectedById">
+        SELECT *
+        FROM application_list
+        WHERE
+        <if test="ids.size()>0">
+            id IN
+            <foreach collection="ids" index="index" item="id" open="(" separator=","
+                     close=")">
+                #{id}
+            </foreach>
+        </if>
+        AND
+            flag = '否'
+
+    </select>
+
+</mapper>
